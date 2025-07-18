@@ -1,10 +1,9 @@
 name: getSFDeploymentID
 
 on:
-
-repository_dispatch:
-  types: [run_my_bat]
-workflow_dispatch:
+  repository_dispatch:
+    types: [run_my_bat]
+  workflow_dispatch:
 
 
 jobs:
@@ -12,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      -uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      -name: Display SF Deployment ID
-       run: echo "SF ID"
+      - name: Display Deployment ID
+        run: |
+            echo "SF ID"
