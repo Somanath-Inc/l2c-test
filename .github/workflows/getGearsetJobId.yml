@@ -1,13 +1,12 @@
 name: Get PR Number
 
 on:
-    pull_request:
-        types: [opened, synchronize, reopened]
-        branches:
-            - qa
+  check_run:
+    types: [rerequested,completed]
                         
 jobs:
     Get-Gearset-Job-ID:
+        if: github.event.context == 'Gearset' && github.event.state == 'success'
         runs-on: ubuntu-latest
         steps:
             - name: Checkout PR source branch
