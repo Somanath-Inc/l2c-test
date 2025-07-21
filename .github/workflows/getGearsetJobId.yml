@@ -26,3 +26,4 @@ jobs:
               run: |
                 jobid=$(gh pr checks ${{ env.pr_number }} --repo Somanathkl/l2c-test --json link | jq -r '.[]' | grep "gearset" | cut -d "=" -f 2 | cut -d "\"" -f 1)
                 echo $jobid
+                
