@@ -7,7 +7,7 @@ on:
             - qa
                         
 jobs:
-    get-pr-number:
+    Get-Gearset-Job-ID:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout PR source branch
@@ -20,9 +20,8 @@ jobs:
                 echo ${{ github.event.pull_request.head.ref }}
                 echo "pr_number=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
 
-            - name: Run getJobID shell script
+            - name: Get Gearset Job ID
               env:
                 GH_TOKEN: ${{ secrets.TOKEN }}
               run: |
-                jobid=$(gh pr checks ${{ env.pr_number }} --repo Somanathkl/l2c-test --json link)
-                echo $jobid | jq -r '.[].link' | cut -d "=" -f 2
+                jobid=$(gh pr checks ${{ env.pr_number }} --repo Somanathkl/l2c-test --json link | jq -r '.[]' | grep "gearset" | cut -d "=" -f 2 | cut -d "\"" -f 1)
