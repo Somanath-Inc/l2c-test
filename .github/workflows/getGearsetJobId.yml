@@ -24,5 +24,6 @@ jobs:
               env:
                 GH_TOKEN: ${{ secrets.TOKEN }}
               run: |
-                jobid=$(gh pr checks $pr_number --repo Somanathkl/l2c-test --json link | jq -r '.[]' | grep "gearset" | cut -d "=" -f 2 | cut -d "\"" -f 1)
-                echo $jobid
+                jobid=$(gh pr checks ${{ env.pr_number }} --repo Somanathkl/l2c-test --json link | jq -r '.[]' | grep "gearset" | cut -d "=" -f 2 | cut -d "\"" -f 1)
+                echo "jobid=$jobid" >> $GITHUB_ENV
+                echo "Gearset Job ID: $jobid"
