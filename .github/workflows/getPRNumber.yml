@@ -18,6 +18,10 @@ jobs:
               id: get_pr_number
               run: echo "pr_number=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
 
+            - name: Ensure getJobID.sh is present
+              run: |
+                ls -l ./getJobID.sh || (echo "getJobID.sh not found!" && exit 1)
+
             - name: Run getJobID shell script
               run: |
                 ./getJobID.sh "${{ env.pr_number }}"
