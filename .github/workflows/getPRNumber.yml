@@ -22,4 +22,4 @@ jobs:
 
             - name: Run getJobID shell script
               run: |
-                sh getJobID.sh "${{ env.pr_number }}"
+                jobid=$(gh pr checks ${{ env.pr_number }} --repo Somanathkl/l2c-test --json link | jq -r '.[].link' | cut -d "=" -f 2)
