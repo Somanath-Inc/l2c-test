@@ -1,0 +1,6 @@
+.sfdx/
+.sf/
+!.gitignore
+!*.sh
+*.py
+*.json
