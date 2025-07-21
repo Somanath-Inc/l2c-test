@@ -24,4 +24,4 @@ jobs:
               env:
                 GH_TOKEN: ${{ github.token }}
               run: |
-                jobid=$(gh pr checks ${{ env.pr_number }} --repo Somanathkl/l2c-test --json link | jq -r '.[].link' | cut -d "=" -f 2)
+                jobid=$(gh pr checks ${{ env.pr_number }} --repo Somanathkl/l2c-test --json link)
