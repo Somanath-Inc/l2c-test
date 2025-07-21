@@ -5,11 +5,15 @@ on:
         types: [opened, synchronize, reopened]
         branches:
             - qa
-
+                        
 jobs:
     get-pr-number:
         runs-on: ubuntu-latest
         steps:
+            - name: Checkout base branch
+              uses: actions/checkout@v4
+              with:
+                ref: ${{ github.event.pull_request.base.ref }}
             - name: Get PR Number
               id: get_pr_number
               run: echo "pr_number=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
