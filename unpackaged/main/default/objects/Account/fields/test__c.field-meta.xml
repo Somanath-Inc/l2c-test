@@ -6,6 +6,6 @@
     <length>77</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
-    <type>Text</type>
+    <type>yuyt</type>
     <unique>false</unique>
 </CustomField>
