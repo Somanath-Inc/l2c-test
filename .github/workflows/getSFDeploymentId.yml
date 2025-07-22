@@ -18,7 +18,7 @@ jobs:
             echo "Deployment ID: ${{github.event.client_payload.SALESFORCE_DEPLOYMENT_ID}}"
   CallDisplaySFDeploymentId:
     needs: GetSFDeploymentId
-    uses: ./.github/workflows/displaySFDeploymentId.yml@main
+    uses: ./.github/workflows/displaySFDeploymentId.yml
     with:
       SALESFORCE_DEPLOYMENT_ID: ${{github.event.client_payload.SALESFORCE_DEPLOYMENT_ID}}
     secrets: inherit
