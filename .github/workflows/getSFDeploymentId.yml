@@ -15,7 +15,7 @@ jobs:
 
       - name: Display Deployment ID
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
             echo "Deployment ID: ${{github.event.client_payload.DeploymentID}}"
             echo "VCS URL: ${{github.event.client_payload.VCSURL}}"
