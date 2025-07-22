@@ -12,6 +12,6 @@ jobs:
         steps:
         - name: Display Deployment ID
           run: |
-                id=${{ inputs.deployment_id }}
+                id="${{ inputs.deployment_id }}"
                 id=$(echo $id | cut -c 1-15)
                 echo "Deployment ID: $id"
