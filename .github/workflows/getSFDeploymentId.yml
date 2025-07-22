@@ -17,7 +17,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
-            echo "Deployment ID: ${{github.event.client_payload.DeploymentID}}"
+            DeploymentID=${{github.event.client_payload.DeploymentID}}
+            deploymentId=$(echo $DeploymentID | cut -c 1-15)
             echo "VCS URL: ${{github.event.client_payload.VCSURL}}"
             CommitID=${{github.event.client_payload.commitId}}
             PULLS_URL="https://api.github.com/repos/Somanath-Inc/l2c-test/commits/$CommitID/pulls"
@@ -29,7 +30,7 @@ jobs:
             --header "X-GitHub-Api-Version: 2022-11-28" \
             --header "Authorization: $AUTH_HEADER ")
             prNum=$(echo $PULLS_RESPONSE | jq -r '.[] | .number')
-            gh pr comment $prNum --body "Deployment ID: ${{github.event.client_payload.DeploymentID}}"
+            gh pr comment $prNum --body "Deployment ID: $deploymentId"
   # CallDisplaySFDeploymentId:
   #   needs: GetSFDeploymentId
   #   uses: Somanath-Inc/l2c-test/.github/workflows/displaySFDeploymentID.yml@main
