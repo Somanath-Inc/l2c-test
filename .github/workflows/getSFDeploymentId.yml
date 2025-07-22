@@ -18,6 +18,6 @@ jobs:
             echo "Deployment ID: ${{github.event.client_payload.SALESFORCE_DEPLOYMENT_ID}}"
   CallDisplaySFDeploymentId:
     needs: GetSFDeploymentId
-    uses: Somanath-Inc/l2c-test/.github/workflows/displaySFDeploymentId.yml@main
+    uses: Somanath-Inc/l2c-test/.github/workflows/displaySFDeploymentID.yml@main
     with:
-      SALESFORCE_DEPLOYMENT_ID: ${{github.event.client_payload.SALESFORCE_DEPLOYMENT_ID}}
+      deployment_id: ${{github.event.client_payload.SALESFORCE_DEPLOYMENT_ID}}
