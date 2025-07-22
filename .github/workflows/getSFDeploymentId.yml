@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  build:
+  GetSFDeploymentId:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,5 +15,9 @@ jobs:
 
       - name: Display Deployment ID
         run: |
-            #echo "SF ID Displayed"
-            echo "Deployment ID: ${{github.event.client_payload.DeploymentID}}"
+            echo "Deployment ID: ${{github.event.client_payload.SALESFORCE_DEPLOYMENT_ID}}"
+  CallDisplaySFDeploymentId:
+    uses: ./.github/workflows/displaySFDeploymentId.yml
+    with:
+      SALESFORCE_DEPLOYMENT_ID: ${{github.event.client_payload.SALESFORCE_DEPLOYMENT_ID}}
+      secrets: inherit
