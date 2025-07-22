@@ -16,6 +16,7 @@ jobs:
       - name: Display Deployment ID
         run: |
             echo "Deployment ID: ${{github.event.client_payload.DeploymentID}}"
+            echo "VCS URL: ${{github.event.client_payload.VCSURL}}"
   CallDisplaySFDeploymentId:
     needs: GetSFDeploymentId
     uses: Somanath-Inc/l2c-test/.github/workflows/displaySFDeploymentID.yml@main
