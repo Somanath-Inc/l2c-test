@@ -5,6 +5,9 @@ on:
             deployment_id:
                 required: true
                 type: string
+            vcs_url:
+                required: true
+                type: string
 
 jobs:
     display-deployment-id:

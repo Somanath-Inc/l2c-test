@@ -17,8 +17,21 @@ jobs:
         run: |
             echo "Deployment ID: ${{github.event.client_payload.DeploymentID}}"
             echo "VCS URL: ${{github.event.client_payload.VCSURL}}"
-  CallDisplaySFDeploymentId:
-    needs: GetSFDeploymentId
-    uses: Somanath-Inc/l2c-test/.github/workflows/displaySFDeploymentID.yml@main
-    with:
-      deployment_id: ${{github.event.client_payload.DeploymentID}}
+            "CommitID=${{github.event.client_payload.commitId}}"
+            PULLS_URL="https://api.github.com/repos/Somanath-Inc/l2c-test/commits/$CommitID/pulls"
+            AUTH_HEADER="Authorization: Bearer {{ secrets.GITHUB_TOKEN }}"
+            #PULLS_RESPONSE=$(curl -X "GET" -H "$AUTH_HEADER" -H "Accept: application/json" "$PULLS_URL")
+            PULLS_RESPONSE=$(curl --request GET \
+            --url "$PULLS_URL" --ssl-no-revoke \
+            --header "Accept: application/vnd.github+json" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            --header "Authorization: $AUTH_HEADER ")
+            prNum=$(echo $PULLS_RESPONSE | jq -r '.[] | .number')
+            echo $prNum
+  # CallDisplaySFDeploymentId:
+  #   needs: GetSFDeploymentId
+  #   uses: Somanath-Inc/l2c-test/.github/workflows/displaySFDeploymentID.yml@main
+  #   with:
+  #     deployment_id: ${{github.event.client_payload.DeploymentID}}
+  #     vcs_url: ${{github.event.client_payload.VCSURL}}
+  #     commitId: ${{github.event.client_payload.commitId}}
