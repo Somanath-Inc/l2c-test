@@ -20,10 +20,8 @@ jobs:
     needs: GetSFDeploymentId
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        
+      - uses: actions/checkout@v3
       - name: Call DisplaySFDeploymentId workflow
-        uses: ./.github/workflows/displaySFDeploymentId.yml
+        uses: Somanath-Inc/l2c-test/.github/workflows/displaySFDeploymentId.yml@main
         with:
           SALESFORCE_DEPLOYMENT_ID: ${{github.event.client_payload.SALESFORCE_DEPLOYMENT_ID}}
