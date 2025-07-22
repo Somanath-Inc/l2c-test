@@ -18,10 +18,6 @@ jobs:
             echo "Deployment ID: ${{github.event.client_payload.SALESFORCE_DEPLOYMENT_ID}}"
   CallDisplaySFDeploymentId:
     needs: GetSFDeploymentId
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Call DisplaySFDeploymentId workflow
-        uses: Somanath-Inc/l2c-test/.github/workflows/displaySFDeploymentId.yml@main
-        with:
-          SALESFORCE_DEPLOYMENT_ID: ${{github.event.client_payload.SALESFORCE_DEPLOYMENT_ID}}
+    uses: Somanath-Inc/l2c-test/.github/workflows/displaySFDeploymentId.yml@main
+    with:
+      SALESFORCE_DEPLOYMENT_ID: ${{github.event.client_payload.SALESFORCE_DEPLOYMENT_ID}}
