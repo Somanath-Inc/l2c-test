@@ -31,10 +31,3 @@ jobs:
             --header "Authorization: $AUTH_HEADER ")
             prNum=$(echo $PULLS_RESPONSE | jq -r '.[] | .number')
             gh pr comment $prNum --body "Deployment ID: $deploymentId"
-  # CallDisplaySFDeploymentId:
-  #   needs: GetSFDeploymentId
-  #   uses: Somanath-Inc/l2c-test/.github/workflows/displaySFDeploymentID.yml@main
-  #   with:
-  #     deployment_id: ${{github.event.client_payload.DeploymentID}}
-  #     vcs_url: ${{github.event.client_payload.VCSURL}}
-  #     commitId: ${{github.event.client_payload.commitId}}
