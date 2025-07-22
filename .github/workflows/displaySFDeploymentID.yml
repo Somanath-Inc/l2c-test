@@ -1,0 +1,17 @@
+name: Display SF Deployment ID
+on:
+    workflow_call:
+        inputs:
+            deployment_id:
+                required: true
+                type: string
+
+jobs:
+    display-deployment-id:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Display Deployment ID
+          run: |
+                id=${{ inputs.deployment_id }}"
+                id=$(echo $id | cut -c 1-15)
+                echo "Deployment ID: $id"
