@@ -5,7 +5,6 @@ on:
     types: [run_my_bat]
   workflow_dispatch:
 
-
 jobs:
   GetSFDeploymentId:
     runs-on: ubuntu-latest
@@ -25,7 +24,6 @@ jobs:
             CommitID=${{github.event.client_payload.commitId}}
             PULLS_URL="https://api.github.com/repos/Somanath-Inc/l2c-test/commits/$CommitID/pulls"
             AUTH_HEADER="Authorization: Bearer {{ secrets.GITHUB_TOKEN }}"
-            #PULLS_RESPONSE=$(curl -X "GET" -H "$AUTH_HEADER" -H "Accept: application/json" "$PULLS_URL")
             PULLS_RESPONSE=$(curl --request GET \
             --url "$PULLS_URL" --ssl-no-revoke \
             --header "Accept: application/vnd.github+json" \
