@@ -31,4 +31,4 @@ jobs:
             --header "Authorization: $AUTH_HEADER ")
             prNum=$(echo $PULLS_RESPONSE | jq -r '.[] | .number')
             gh pr comment $prNum --body "Deployment ID: $deploymentId
-                                         URL: "https://java-saas-7806--qa.sandbox.my.salesforce-setup.com/lightning/setup/DeployStatus/page?address=%2Fchangemgmt%2FmonitorDeploymentsDetails.apexp%3FasyncId%3D$deploymentId%26retURL%3D%252Fchangemgmt%252FmonitorDeployment.apexp""
+                                         URL: [Validation Errors]("https://java-saas-7806--qa.sandbox.my.salesforce-setup.com/lightning/setup/DeployStatus/page?address=%2Fchangemgmt%2FmonitorDeploymentsDetails.apexp%3FasyncId%3D$deploymentId%26retURL%3D%252Fchangemgmt%252FmonitorDeployment.apexp")"
